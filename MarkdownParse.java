@@ -11,20 +11,47 @@ public class MarkdownParse {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
-        System.out.println(markdown.length());
-        while(currentIndex < markdown.length()) {
-            int openBracket = markdown.indexOf("[", currentIndex);
-            int closeBracket = markdown.indexOf("]", openBracket);
-            int openParen = markdown.indexOf("(", closeBracket);
-            int closeParen = markdown.indexOf(")", openParen);
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex = closeParen+1;
-             
+        int finalIndex = 0;
+        boolean check = false;
+        if(!markdown.contains("(") || !markdown.contains(")") ||
+                !markdown.contains("[") || !markdown.contains("]")){
+                    return toReturn;
         }
-        
+        int openBracket = 0;
+        int closeBracket = 0;
+        int openParen = 0;
+        int closeParen = 0;
+        while(currentIndex < markdown.length()-1) {
+            if(markdown.substring(currentIndex).contains("[")) {
+                openBracket = markdown.indexOf("[", currentIndex);
+            }
+            else return toReturn;
+            if(markdown.substring(currentIndex).contains("]")) {
+                closeBracket = markdown.indexOf("]", openBracket);
+            }
+            else return toReturn;
+            if(markdown.substring(currentIndex).contains("(")) {
+                openParen = markdown.indexOf("(", closeBracket);
+            }
+            else return toReturn;
+            if(markdown.substring(currentIndex).contains(")")) {
+                closeParen = markdown.indexOf(")", openParen);
+            }
+            else return toReturn;
+            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            currentIndex = closeParen + 1;
+            if(finalIndex == currentIndex){
+                check = true;
+            }
+            finalIndex = currentIndex;
+            if(check){
+                return toReturn;
+            }
+            
+        }
+
         return toReturn;
     }
-
 
 
     public static void main(String[] args) throws IOException {
