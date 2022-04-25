@@ -12,7 +12,6 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         int finalIndex = 0;
-        boolean check = false;
         if(!markdown.contains("(") || !markdown.contains(")") ||
                 !markdown.contains("[") || !markdown.contains("]")){
                     return toReturn;
@@ -40,13 +39,7 @@ public class MarkdownParse {
             else return toReturn;
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
-            if(finalIndex == currentIndex){
-                check = true;
-            }
             finalIndex = currentIndex;
-            if(check){
-                return toReturn;
-            }
             
         }
 
