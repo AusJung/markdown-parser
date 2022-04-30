@@ -12,7 +12,8 @@ public class MarkdownParseTest {
         assertEquals(2, 1 + 1);
     }
     @Test
-    public void getLinks() throws IOException {
+    public void getLinks() {
+        
         try {
             Path fileName = Path.of("test-file.md");
             String content = Files.readString(fileName);
@@ -20,11 +21,27 @@ public class MarkdownParseTest {
             ArrayList<String> actual = new ArrayList<>();
             actual.add("https://something.com, some-thing.html");
             assertEquals(actual.toString(), links.toString());
-            
+            System.out.println("try");
         }
         catch (Exception e) {
             System.out.println("catch");
-            assertFalse(false);
+        }
+        
+    }
+    @Test
+    public void getLinks2() {
+        
+        try {
+            Path fileName = Path.of("test-file8.md");
+            String content = Files.readString(fileName);
+            ArrayList<String> links = MarkdownParse.getLinks(content);
+            ArrayList<String> actual = new ArrayList<>();
+            actual.add("");
+            assertEquals(actual.toString(), links.toString());
+            System.out.println("try2");
+        }
+        catch (Exception e) {
+            System.out.println("catch2");
         }
         
     }
