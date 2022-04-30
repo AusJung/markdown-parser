@@ -9,7 +9,7 @@ public class MarkdownParseTest {
 
     @Test
     public void addition() {
-        assertEquals(2, 1 + 1);
+        assertEquals(3, 1 + 1);
     }
     @Test
     public void getLinks() throws IOException {
@@ -20,6 +20,7 @@ public class MarkdownParseTest {
             ArrayList<String> actual = new ArrayList<>();
             actual.add("https://something.com, some-thing.html");
             assertEquals(actual.toString(), links.toString());
+            
         }
         catch (Exception e) {
             //TODO: handle exception
