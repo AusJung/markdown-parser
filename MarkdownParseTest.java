@@ -23,9 +23,9 @@ public class MarkdownParseTest {
             
         }
         catch (Exception e) {
-            //TODO: handle exception
             System.out.println("catch");
             assertFalse(false);
         }
+        
     }
 }
